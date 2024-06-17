@@ -1,0 +1,23 @@
+{
+    "name": "codevar/citas",
+    "description": "Sistema para citas medicas y turnos",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Codevar\\Citas\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Freddy Pereyra",
+            "email": "freddypimpns@gmail.com"
+        }
+    ],
+    "require": {
+        "vlucas/phpdotenv": "^5.6",
+        "twig/twig": "^3.10",
+        "phroute/phroute": "^2.2",
+        "bramus/router": "~1.6",
+        "illuminate/database": "^10.48"
+    }
+}
