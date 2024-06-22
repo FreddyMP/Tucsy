@@ -9,22 +9,23 @@ use Codevar\Citas\Configurations\Front;
 class pruebaController{
 
     #Show all
-    public static function show_all(int $skip = null, int $paginate = 15){
+    public static function show_all(int $skip = null, int $paginate = 10){
+       
         if($skip == null){
             $pruebas = Prueba::take($paginate)->get();
         }else{
             $skip = $skip * $paginate;
             $pruebas = Prueba::skip($skip)->take($paginate)->get();
         }
-        $pruebas->skip('10');
-        
-        Front::view_font('index.twig', $pruebas);
-        
+        Front::view_font('index', $pruebas);
     }
 
     #show specific id
     public static function show_id(int $id){
 
+        $pruebas = Prueba::find($id);
+        Front::view_font('prueba/update', $pruebas);
+        
     }
 
     #show with filters
@@ -33,7 +34,11 @@ class pruebaController{
         
     }
 
-    public function create(){
+    public static function create(){
+        Front::view_font('prueba/create');
+    }
+
+    public function insert(){
         try {
 
             prueba::create([

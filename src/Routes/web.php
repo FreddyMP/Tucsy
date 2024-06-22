@@ -8,13 +8,28 @@ $router->get('/', function() {
  });
  //paginar
  $router->get('/prueba/paginate/{skip}', function( int $skip = null) {
+
    if($skip == null){
       pruebaController::show_all();
    }else{
       pruebaController::show_all($skip);
    }
-   
+
  });
+
+ $router->get("/prueba/detail/{1}", function( $id) {
+
+   pruebaController::show_id($id);
+
+});
+$router->get("/prueba/create", function() {
+
+   pruebaController::create();
+   
+});
+
+
+
 
  $router->post('/insert', function() {
     $pruebas  = new pruebaController;
