@@ -1,7 +1,7 @@
 <?php
 
 namespace Codevar\Citas\Configurations;
-use Codevar\Citas\Configurations\Conexion;
+#use Codevar\Citas\Configurations\Conexion;
 
 class Models{
     public function create_table(string $table, array $fiels){

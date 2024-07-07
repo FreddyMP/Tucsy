@@ -8,32 +8,23 @@ $router->get('/', function() {
  });
  //paginar
  $router->get('/prueba/paginate/{skip}', function( int $skip = null) {
-
    if($skip == null){
       pruebaController::show_all();
    }else{
       pruebaController::show_all($skip);
    }
-
  });
 
  $router->get("/prueba/detail/{1}", function( $id) {
-
    pruebaController::show_id($id);
-
 });
 $router->get("/prueba/create", function() {
-
    pruebaController::create();
-   
 });
 
-
-
-
- $router->post('/insert', function() {
+ $router->post('/prueba/insert', function() {
     $pruebas  = new pruebaController;
-    print_r($pruebas->create());
+    $pruebas::insert();
 });
 
 $router->put('/update', function() {
@@ -41,9 +32,9 @@ $router->put('/update', function() {
    print_r($pruebas->update());
 });
 
-$router->delete('/delete', function() {
-   $pruebas  = new pruebaController;
-   print_r($pruebas->delete());
+$router->get('/prueba/delete/{1}', function(int $id) {
+   
+   pruebaController::logic_delete($id);
 });
 
 

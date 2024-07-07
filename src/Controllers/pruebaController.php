@@ -5,6 +5,7 @@ use Codevar\Citas\Models\Prueba;
 #use Illuminate\Support\Facades\Request;
 
 use Codevar\Citas\Configurations\Front;
+use Illuminate\Support\Facades\Redirect;
 
 class pruebaController{
 
@@ -12,10 +13,10 @@ class pruebaController{
     public static function show_all(int $skip = null, int $paginate = 10){
        
         if($skip == null){
-            $pruebas = Prueba::take($paginate)->get();
+            $pruebas = Prueba::take($paginate)->whereNull("delete_at")->get();
         }else{
             $skip = $skip * $paginate;
-            $pruebas = Prueba::skip($skip)->take($paginate)->get();
+            $pruebas = Prueba::skip($skip)->take($paginate)->whereNull("delete_at")->get();
         }
         Front::view_font('index', $pruebas);
     }
@@ -38,19 +39,18 @@ class pruebaController{
         Front::view_font('prueba/create');
     }
 
-    public function insert(){
+    public static function insert(){
         try {
 
             prueba::create([
                 "nombre"=> $_POST["nombre"],
                 "apellido"=> $_POST["apellido"]
             ]);
-            return "Insertado correctamente";
+            header("location:http://127.0.0.1:3000/");
 
         } catch (\Throwable $th) {
 
             return "Se genero un error: ".$th;
-
         }   
     }
 
@@ -64,6 +64,22 @@ class pruebaController{
 
             $prueba->save();
             return "Actualizado correctamente";
+
+        } catch (\Throwable $th) {
+
+            return "Se genero un error: ".$th;
+
+        }
+    }
+
+    public static function logic_delete(int $id){
+        try {
+            $fecha = date("Y-m-d H:i:s");   
+            $prueba = prueba::find($id);
+            $prueba->update([
+                "delete_at"=>$fecha
+            ]);
+            header("location:http://127.0.0.1:3000/");
 
         } catch (\Throwable $th) {
 

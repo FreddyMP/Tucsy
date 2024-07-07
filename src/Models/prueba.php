@@ -4,8 +4,8 @@ namespace Codevar\Citas\Models;
 use Illuminate\Database\Eloquent\Model;
 
     class Prueba extends Model{
-        protected $table = 'prueba';
+        protected $table = 'gente';
 
-        protected $fillable = ['nombre', 'apellido'];
+        protected $fillable = ['nombre', 'apellido','delete_at'];
 
     }
