@@ -12,8 +12,9 @@ class ComposerStaticInit98b802db5d9f66f3053557e70e5c4c0e
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
         '60799491728b879e74601d83e38b2cad' => __DIR__ . '/..' . '/illuminate/collections/helpers.php',
         'a1105708a18b76903365ca1c4aa61b02' => __DIR__ . '/..' . '/symfony/translation/Resources/functions.php',
-        '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         '72579e7bd17821bb1321b87411366eae' => __DIR__ . '/..' . '/illuminate/support/helpers.php',
+        '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
+        'c379e2a4ec3735f6c4915556c8c81813' => __DIR__ . '/..' . '/rap2hpoutre/fast-excel/src/functions/fastexcel.php',
         '89efb1254ef2d1c5d80096acd12c4098' => __DIR__ . '/..' . '/twig/twig/src/Resources/core.php',
         'ffecb95d45175fd40f75be8a23b34f90' => __DIR__ . '/..' . '/twig/twig/src/Resources/debug.php',
         'c7baa00073ee9c61edf148c51917cfb4' => __DIR__ . '/..' . '/twig/twig/src/Resources/escaper.php',
@@ -37,6 +38,10 @@ class ComposerStaticInit98b802db5d9f66f3053557e70e5c4c0e
             'Symfony\\Contracts\\Translation\\' => 30,
             'Symfony\\Component\\Translation\\' => 30,
         ),
+        'R' => 
+        array (
+            'Rap2hpoutre\\FastExcel\\' => 22,
+        ),
         'P' => 
         array (
             'Psr\\SimpleCache\\' => 16,
@@ -44,6 +49,10 @@ class ComposerStaticInit98b802db5d9f66f3053557e70e5c4c0e
             'Psr\\Clock\\' => 10,
             'Phroute\\Phroute\\' => 16,
             'PhpOption\\' => 10,
+        ),
+        'O' => 
+        array (
+            'OpenSpout\\' => 10,
         ),
         'I' => 
         array (
@@ -102,6 +111,10 @@ class ComposerStaticInit98b802db5d9f66f3053557e70e5c4c0e
         array (
             0 => __DIR__ . '/..' . '/symfony/translation',
         ),
+        'Rap2hpoutre\\FastExcel\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/rap2hpoutre/fast-excel/src',
+        ),
         'Psr\\SimpleCache\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/simple-cache/src',
@@ -122,11 +135,15 @@ class ComposerStaticInit98b802db5d9f66f3053557e70e5c4c0e
         array (
             0 => __DIR__ . '/..' . '/phpoption/phpoption/src/PhpOption',
         ),
+        'OpenSpout\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/openspout/openspout/src',
+        ),
         'Illuminate\\Support\\' => 
         array (
-            0 => __DIR__ . '/..' . '/illuminate/macroable',
+            0 => __DIR__ . '/..' . '/illuminate/collections',
             1 => __DIR__ . '/..' . '/illuminate/conditionable',
-            2 => __DIR__ . '/..' . '/illuminate/collections',
+            2 => __DIR__ . '/..' . '/illuminate/macroable',
             3 => __DIR__ . '/..' . '/illuminate/support',
         ),
         'Illuminate\\Database\\' => 

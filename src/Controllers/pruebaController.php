@@ -3,6 +3,7 @@ namespace Codevar\Citas\Controllers;
 #use Codevar\Citas\Configurations\Controllers;
 use Codevar\Citas\Models\Prueba;
 #use Illuminate\Support\Facades\Request;
+use Rap2hpoutre\FastExcel\FastExcel;
 
 use Codevar\Citas\Configurations\Front;
 use Illuminate\Support\Facades\Redirect;
@@ -18,7 +19,27 @@ class pruebaController{
             $skip = $skip * $paginate;
             $pruebas = Prueba::skip($skip)->take($paginate)->whereNull("delete_at")->get();
         }
+
+        #return (new FastExcel($pruebas))->export('file.xlsx');
         Front::view_font('index', $pruebas);
+    }
+
+    public static function excel_all(int $skip = null, int $paginate = 10){
+       
+        if($skip == null){
+            $pruebas = Prueba::take($paginate)->whereNull("delete_at")->get();
+        }else{
+            $skip = $skip * $paginate;
+            $pruebas = Prueba::skip($skip)->take($paginate)->whereNull("delete_at")->get();
+        }
+
+        $name_file = "prueba_";
+        $fecha = date("ymdhis");
+        $name_file .=$fecha;
+
+        $enlace_actual = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+
+        return (new FastExcel($pruebas))->export($enlace_actual.'.xlsx');
     }
 
     #show specific id
@@ -56,14 +77,15 @@ class pruebaController{
 
     public function update(){
         try {
-
-            $prueba = prueba::find(874);
+            $id = $_POST["id"];
+            $prueba = prueba::find($id);
             $prueba->update([
-                "apellido"=>$_POST["apellido"]
+                "apellido"=>$_POST["apellido"],
+                "nombre"=>$_POST["nombre"]
             ]);
 
             $prueba->save();
-            return "Actualizado correctamente";
+            header("location:http://127.0.0.1:3000/");
 
         } catch (\Throwable $th) {
 

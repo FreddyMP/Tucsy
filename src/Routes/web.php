@@ -15,6 +15,23 @@ $router->get('/', function() {
    }
  });
 
+ $router->get('/prueba/excel', function() {
+   
+      $enlace_actual = $_SERVER['HTTP_REFERER'];
+      $delimitador = "/";
+      $array = explode($delimitador, $enlace_actual);
+      
+      print_r($array[5]);
+
+      if($array[5]){
+         $skip = $array[5];
+         pruebaController::excel_all($skip);
+      }else {
+         pruebaController::excel_all();
+      }
+   
+ });
+
  $router->get("/prueba/detail/{1}", function( $id) {
    pruebaController::show_id($id);
 });
@@ -27,7 +44,7 @@ $router->get("/prueba/create", function() {
     $pruebas::insert();
 });
 
-$router->put('/update', function() {
+$router->post('/prueba/update', function() {
    $pruebas  = new pruebaController;
    print_r($pruebas->update());
 });

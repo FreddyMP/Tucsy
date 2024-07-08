@@ -18,14 +18,20 @@
             </li>
         </ul>
         <div class="row bg-light mt-3">
-            <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Nombre</label>
-                <input type="email" class="form-control"value="{{variables.nombre}}" id="exampleFormControlInput1" placeholder="name@example.com">
-            </div>
-            <div class="mb-3">
-                <label for="exampleFormControlTextarea1" class="form-label">Apellido</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3">{{variables.apellido}}</textarea>
-            </div>
+            <form action="http://127.0.0.1:3000/prueba/update" method="post">
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Nombre</label>
+                    <input type="text" name="nombre"class="form-control"value="{{variables.nombre}}" id="exampleFormControlInput1" placeholder="name@example.com">
+                    <input type="hidden" name="id" value="{{variables.id}}">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlTextarea1" class="form-label">Apellido</label>
+                    <textarea name="apellido" class="form-control" id="exampleFormControlTextarea1" rows="3">{{variables.apellido}}</textarea>
+                </div>
+                <div>
+                <button class="btn btn-outline-success">Guardar</button>
+                </div>
+            </form>
         </div>
     <div>
 </div>
