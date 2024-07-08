@@ -1,14 +1,10 @@
 <?php
 namespace Codevar\Citas\Controllers;
-#use Codevar\Citas\Configurations\Controllers;
 use Codevar\Citas\Models\Prueba;
-#use Illuminate\Support\Facades\Request;
-use Rap2hpoutre\FastExcel\FastExcel;
-
 use Codevar\Citas\Configurations\Front;
-use Illuminate\Support\Facades\Redirect;
+use Codevar\Citas\Configurations\Utils;
 
-class pruebaController{
+class pruebaController{ 
 
     #Show all
     public static function show_all(int $skip = null, int $paginate = 10){
@@ -33,13 +29,9 @@ class pruebaController{
             $pruebas = Prueba::skip($skip)->take($paginate)->whereNull("delete_at")->get();
         }
 
-        $name_file = "prueba_";
-        $fecha = date("ymdhis");
-        $name_file .=$fecha;
+        Utils::downLoad_Excel("pruebas", $pruebas);
 
-        $enlace_actual = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 
-        return (new FastExcel($pruebas))->export($enlace_actual.'.xlsx');
     }
 
     #show specific id

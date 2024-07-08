@@ -20,10 +20,8 @@ $router->get('/', function() {
       $enlace_actual = $_SERVER['HTTP_REFERER'];
       $delimitador = "/";
       $array = explode($delimitador, $enlace_actual);
-      
-      print_r($array[5]);
 
-      if($array[5]){
+      if(isset($array[5])){
          $skip = $array[5];
          pruebaController::excel_all($skip);
       }else {
