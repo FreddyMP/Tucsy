@@ -19,6 +19,7 @@
         "phroute/phroute": "^2.2",
         "bramus/router": "~1.6",
         "illuminate/database": "^10.48",
-        "rap2hpoutre/fast-excel": "^5.5"
+        "rap2hpoutre/fast-excel": "^5.5",
+        "dompdf/dompdf": "^3.0"
     }
 }

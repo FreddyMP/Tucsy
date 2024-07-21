@@ -12,7 +12,7 @@
                 <div class="btn-group col-md-2 mt-2">
                     <div ><a href="http://127.0.0.1:3000/prueba/excel"><img id="utils" src="http://127.0.0.1:3000/src/assets/images/excel.png" width="60"/></a></div>
                     
-                    <div><img src="http://127.0.0.1:3000/src/assets/images/pdf.png" width="40"/></div>
+                    <div><a href="http://127.0.0.1:3000/prueba/pdf"><img src="http://127.0.0.1:3000/src/assets/images/pdf.png" width="40"/></a></div>
                 </div>
             </div>
         </div>
@@ -22,7 +22,29 @@
             
     </div>
     
-    <input class="form-control" type="text" placeholder="Search">
+    <form>
+        <div class="row">
+            <div class="col-md-4">
+                <input type="text" class="form-control" list="nombre" placeholder="Nombre"/>
+                <datalist id="nombre">
+                    {% for variable in variables[1] %} 
+                        <option>{{variable.nombre}}</option>
+                    {% endfor %}
+                </datalist>
+            </div>
+                        <div class="col-md-4">
+                <input type="text" class="form-control" list="apellido" placeholder="Apellido"/>
+                <datalist id="apellido">
+                    <option>Pereyra</option>
+                    <option>Madonado</option>
+                    <option>Peña</option>
+                    <option>Delgado</option>
+
+                </datalist>
+            </div>
+        </div>
+    </form>
+
     <table class="table">
         <thead>
             <tr>
@@ -34,7 +56,7 @@
             </tr>
         </thead>
         <tbody>
-            {% for variable in variables %} 
+            {% for variable in variables[0] %} 
             
                 <tr>
                     <td>{{variable.id}}</td>

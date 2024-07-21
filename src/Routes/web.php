@@ -2,6 +2,7 @@
 use Codevar\Citas\Controllers\pruebaController;
 $router = new \Bramus\Router\Router();
 
+
 #Home
 $router->get('/', function() {
       pruebaController::show_all();
@@ -23,12 +24,18 @@ $router->get('/', function() {
 
       if(isset($array[5])){
          $skip = $array[5];
-         pruebaController::excel_all($skip);
+         pruebaController::excel_download($skip);
       }else {
-         pruebaController::excel_all();
+         pruebaController::excel_download();
       }
    
  });
+
+ $router->get('/prueba/pdf', function() {
+   pruebaController::pdf_download();
+});
+
+
 
  $router->get("/prueba/detail/{1}", function( $id) {
    pruebaController::show_id($id);

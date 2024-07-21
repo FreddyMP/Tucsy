@@ -3,6 +3,7 @@ namespace Codevar\Citas\Controllers;
 use Codevar\Citas\Models\Prueba;
 use Codevar\Citas\Configurations\Front;
 use Codevar\Citas\Configurations\Utils;
+use Dompdf\Dompdf;
 
 class pruebaController{ 
 
@@ -15,23 +16,11 @@ class pruebaController{
             $skip = $skip * $paginate;
             $pruebas = Prueba::skip($skip)->take($paginate)->whereNull("delete_at")->get();
         }
+        
+        $forsearch = Prueba::whereNull("delete_at")->get();
+        $dato = [$pruebas,$forsearch];
 
-        #return (new FastExcel($pruebas))->export('file.xlsx');
-        Front::view_font('index', $pruebas);
-    }
-
-    public static function excel_all(int $skip = null, int $paginate = 10){
-       
-        if($skip == null){
-            $pruebas = Prueba::take($paginate)->whereNull("delete_at")->get();
-        }else{
-            $skip = $skip * $paginate;
-            $pruebas = Prueba::skip($skip)->take($paginate)->whereNull("delete_at")->get();
-        }
-
-        Utils::downLoad_Excel("pruebas", $pruebas);
-
-
+        Front::view_font('index', $dato);
     }
 
     #show specific id
@@ -47,14 +36,14 @@ class pruebaController{
 
         
     }
-
+    
+    #show form create
     public static function create(){
         Front::view_font('prueba/create');
     }
 
     public static function insert(){
         try {
-
             prueba::create([
                 "nombre"=> $_POST["nombre"],
                 "apellido"=> $_POST["apellido"]
@@ -114,5 +103,36 @@ class pruebaController{
 
         }
     }
+
+    #Download Excel
+    public static function excel_download(int $skip = null, int $paginate = 10){
+        if($skip == null){
+            $pruebas = Prueba::take($paginate)->whereNull("delete_at")->get();
+        }else{
+            $skip = $skip * $paginate;
+            $pruebas = Prueba::skip($skip)->take($paginate)->whereNull("delete_at")->get();
+        }
+        Utils::downLoad_Excel("pruebas", $pruebas);
+    }
+
+
+
+    #Download pdf
+    public static function pdf_download(int $skip = null, int $paginate = 10){
+
+        if($skip == null){
+            $pruebas = Prueba::take($paginate)->whereNull("delete_at")->get();
+        }else{
+            $skip = $skip * $paginate;
+            $pruebas = Prueba::skip($skip)->take($paginate)->whereNull("delete_at")->get();
+        }
+
+        $dompdf = new Dompdf();
+        $dompdf->loadHtml();
+    
+        $dompdf->render();
+        $dompdf->stream();
+    }
+
     
 }
